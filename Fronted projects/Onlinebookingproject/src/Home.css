@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+menu{
+    text-decoration: none;
+    list-style: none;
+    display: inline-flex;
+    gap: 10;
+}
