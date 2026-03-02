@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { registerUser } from "./api";
 
 const Register = ({ setPage }) => {
   const [firstName, setFirstName] = useState("");
@@ -11,9 +11,37 @@ const Register = ({ setPage }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const getErrorMessage = (err) => {
+    if (!err.response) {
+      return "Cannot connect to backend. Start Django server on http://127.0.0.1:8000.";
+    }
+
+    const data = err.response.data;
+    if (!data) return "Registration failed. Try again.";
+    if (typeof data === "string") return data;
+    if (data.error) return data.error;
+    if (data.detail) return data.detail;
+
+    const firstKey = Object.keys(data)[0];
+    if (!firstKey) return "Registration failed. Try again.";
+    const firstValue = data[firstKey];
+    if (Array.isArray(firstValue) && firstValue.length) {
+      return `${firstKey}: ${firstValue[0]}`;
+    }
+    return `${firstKey}: ${firstValue}`;
+  };
+
   const handleRegister = async () => {
+    setError("");
+    setSuccess("");
+
+    if (!firstName || !lastName || !phoneNumber || !email || !password) {
+      setError("First name, last name, phone number, email, and password are required.");
+      return;
+    }
+
     try {
-      await axios.post("http://127.0.0.1:8000/api/users/", {
+      await registerUser({
         first_name: firstName,
         middle_name: middleName,
         last_name: lastName,
@@ -25,7 +53,7 @@ const Register = ({ setPage }) => {
       setSuccess("Registration successful! You can now login.");
       setTimeout(() => setPage("login"), 1500); // redirect to login after 1.5s
     } catch (err) {
-      setError("Registration failed. Try again.");
+      setError(getErrorMessage(err));
     }
   };
 
