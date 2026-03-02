@@ -37,7 +37,7 @@ if render_hostname:
 CORS_ALLOW_ALL_ORIGINS = get_bool(os.getenv("CORS_ALLOW_ALL_ORIGINS"), default=False)
 CORS_ALLOWED_ORIGINS = get_list(
     os.getenv("CORS_ALLOWED_ORIGINS"),
-    default=["http://localhost:5173"],
+    default=["https://online-booking-ticket.vercel.app"],
 )
 CSRF_TRUSTED_ORIGINS = get_list(os.getenv("CSRF_TRUSTED_ORIGINS"), default=[])
 

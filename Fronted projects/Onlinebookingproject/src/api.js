@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rawApiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api";
+const rawApiBaseUrl = import.meta.env.VITE_API_BASE_URL || "https://online-booking-ticket-1.onrender.com/api";
 const apiBaseUrl = rawApiBaseUrl.endsWith("/") ? rawApiBaseUrl : `${rawApiBaseUrl}/`;
 
 const api = axios.create({
