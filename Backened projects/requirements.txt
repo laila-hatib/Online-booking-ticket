@@ -1,0 +1,14 @@
+asgiref
+Django
+djangorestframework
+drf-yasg
+django-cors-headers
+gunicorn
+inflection
+packaging
+psycopg2-binary
+pytz
+PyYAML
+sqlparse
+tzdata
+uritemplate
