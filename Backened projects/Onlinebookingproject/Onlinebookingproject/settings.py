@@ -140,5 +140,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+CORS_ALLOWED_ORIGINS = [
+    'https://online-booking-ticket.vercel.app'
+]
+CORS_ALLOWED_ORIGIN_ALL = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
